@@ -18,8 +18,8 @@ library(caret)
 library(randomForest)
 library(rpart)
 
-validation = read.csv("C:/Users/Martuki/Desktop/pml-testing.csv")
-training = read.csv("C:/Users/Martuki/Desktop/pml-training.csv")
+validation = read.csv("C:/Desktop/pml-testing.csv")
+training = read.csv("C:/Desktop/pml-training.csv")
 
 dim(training)
 str(training)
