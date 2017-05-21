@@ -73,7 +73,7 @@ confusionMatrix(predLDA, testing$classe)
 ```
 
 # Cross Validation
-As we can see RF provides the highest accuracy compared to the other two models with 99.49%, hence the expected out-of-sample error is about 0.0051, or 0.51%, so RF is the best model for our data and I use it for cross validation:
+As we can see RF provides the highest accuracy compared to the other two models with 99.64%, hence the expected out-of-sample error is about 0.0036, or 0.36%, so RF is the best model for our data and I use it for cross validation:
 
 ```{r pred}
 # Prediction validation
