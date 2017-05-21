@@ -25,7 +25,7 @@ dim(training)
 str(training)
 ```
 
-Just for curiosity I inspect the frequency of each type of classe:
+Just for curiosity I inspect the frequency of each type of classe and we notice they are on the same range (beign A the most frequent):
 ```{r freq}
 barplot(prop.table(table(training$classe)))
 ```
@@ -44,7 +44,7 @@ nzv = nearZeroVar(sub_training, saveMetrics = T)
 sub_training = sub_training[,rownames(nzv[nzv$nzv=="FALSE",])]
 ```
 
-Now we are ready to subset out data for cross validation:
+Now we are ready to subset our data for cross validation:
 ```{r crossval}
 # Data Partition
 inTrain = createDataPartition (y=sub_training$classe, p=0.7, list=F)
@@ -56,6 +56,7 @@ testing = sub_training [-inTrain,]
 I have tested three different models methods in order to find the most accurate for our data: Random Forest, Regression Trees and Linear Discriminant Analysis. I have built their models, predict using our subset of testing and compared their accuracy:
 ```{r models}
 # Random Forest
+set.seed(125)
 modRF = randomForest(classe ~. , data=training, method="class")
 predRF = predict(modRF,newdata=testing)
 confusionMatrix(predRF, testing$classe)
@@ -72,7 +73,7 @@ confusionMatrix(predLDA, testing$classe)
 ```
 
 # Cross Validation
-As we can see RF provides the highest accuracy compared to the other three models with 99.71%, hence the expected out-of-sample error is about 0.0029, or 0.29% so I chose it for cross validation:
+As we can see RF provides the highest accuracy compared to the other two models with 99.59%, hence the expected out-of-sample error is about 0.0041, or 0.41%, so RF is the best model for our data and I use it for cross validation:
 
 ```{r pred}
 # Prediction validation
